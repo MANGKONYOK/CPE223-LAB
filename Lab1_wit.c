@@ -3,16 +3,29 @@
 // Kittiphat Noikate 67070503459
 #include <stdio.h>
 
-void two_com(int bit, long long int binary){
-    int arr[bit];
-    for(int i=bit-1; i>=0; i--){
-        arr[i] = binary % 10;
-        binary /= 10;
+
+int abs(int value){
+
+  if (value < 0) {
+    return -value;
+  }
+  return value;
+
+}
+
+void two_com(int bit, long long int decimal){
+    int arr[bit] = {0};
+    int dec;
+
+    if (decimal < 0){
+        dec = abs(decimal);
+    }else{
+        dec = decimal;
     }
 
-    //test print
-    for(int i=0; i<bit; i++){
-        printf("%d", arr[i]);
+    for (int i = bit-1; i>=0; i--){
+        arr[i] = dec%2;
+        dec /= 2;
     }
 }
 
@@ -23,7 +36,8 @@ void input(){
     scanf("%d", &bit);
     printf("Please enter a number between -4 and 3 inclusive: ");
     scanf("%lld", &decimal);
-    two_com(bit, decimal);
+    binary(decimal, bit);
+    two_com()
 }
 
 int main() {
