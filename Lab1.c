@@ -202,8 +202,7 @@ int main(){
 
   printf("Please enter the number of bits between 1 and 32 inclusive: ");
   scanf("%d", &bit);
-  printf("Please enter a number between %d and %d inclusive: ",
-         -(power_2(bit - 1) - 1), power_2(bit - 1) - 1);
+  printf("Please enter a number between %d and %d inclusive: ", -(power_2(bit - 1)), power_2(bit - 1) - 1);
   scanf("%s", decimal);
 
   sign_and_magnitude(bit, decimal); // test sign & magnitude
