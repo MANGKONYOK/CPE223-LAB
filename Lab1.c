@@ -107,13 +107,17 @@ void one_com(int bit, char *decimal){
 
   if(is_neg){
     for(i = 0; i < bit; i++){
-      arr[i] = (arr[i] == 0) ? 1 : 0;
+      if(arr[i] == 0){
+        arr[i] = 1;
+      }else{
+        arr[i] = 0;
+      }
     }
   }
 
   if(is_neg){
     printf("The 1's complement representation of -%d is ", str_to_int(decimal));
-  } else {
+  }else{
     printf("The 1's complement representation of %d is ", str_to_int(decimal));
   }
 
@@ -129,7 +133,7 @@ void two_com(int bit, char *decimal){
   int arr[32] = {0};
   int is_neg = is_negative_str(decimal);
   int dec = str_to_int(decimal);
-  int max_pos = power_2(bit - 1) - 1;
+  int max_mag = power_2(bit - 1) - 1;
   int max_neg = power_2(bit - 1);
   int i;
   int in_range;
@@ -137,7 +141,7 @@ void two_com(int bit, char *decimal){
   if(is_neg){
     in_range = (dec <= max_neg);
   }else{
-    in_range = (dec <= max_pos);
+    in_range = (dec <= max_mag);
   }
 
   if(is_neg && dec == 0){
@@ -202,6 +206,11 @@ int main(){
 
   printf("Please enter the number of bits between 1 and 32 inclusive: ");
   scanf("%d", &bit);
+
+  if(bit < 1 || bit > 32){
+    return 1;
+  }
+  
   printf("Please enter a number between %d and %d inclusive: ", -(power_2(bit - 1)), power_2(bit - 1) - 1);
   scanf("%s", decimal);
 
